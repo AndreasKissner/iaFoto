@@ -1,0 +1,24 @@
+<div class="camera-container">
+  @if (cameraService.fehler()) {
+    <div role="alert" class="camera-container__error">
+      {{ cameraService.fehler() }}
+    </div>
+  }
+
+  <video 
+    #videoPlayer 
+    class="camera-container__video"
+    [srcObject]="cameraService.stream()" 
+    autoplay 
+    playsinline 
+    aria-label="Live-Kamera-Vorschau">
+  </video>
+
+  <button 
+    class="camera-container__button"
+    (click)="aufnahmeMachen()" 
+    [disabled]="!cameraService.stream()"
+    aria-label="Foto jetzt aufnehmen">
+    <span class="camera-container__button-text">Aufnehmen</span>
+  </button>
+</div>
